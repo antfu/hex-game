@@ -2,33 +2,46 @@ doctype html
 html
   head
     title Hex Game
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='viewport', content='width=device-width, initial-scale=0.7, user-scalable=yes')
     link(href='/static/style/index.css', rel='stylesheet')
     link(rel='icon', type='image/png', href='/static/favicon.png')
   body
     #app
+      .scaler(:style="{width:86.6*(width+height/2)*scale+'px', height:75*height*scale+'px'}", :class="{disabled:disabled}")
+        svg.board(:style='{"transform":"scale("+scale+","+scale+")"}')
+          defs
+            lineargradient#gradient1
+              stop(offset='49%', :stop-color='colors.a')
+              stop(offset='51%', :stop-color='colors.b')
+            lineargradient#gradient2
+              stop(offset='49%', :stop-color='colors.b')
+              stop(offset='51%', :stop-color='colors.a')
+            lineargradient#gradient3(x1="0",x2="0",y1="0",y2="1")
+              stop(offset='49%', :stop-color='colors.a')
+              stop(offset='51%', :stop-color='colors.b')
+            lineargradient#gradient4(x1="0",x2="0",y1="0",y2="1")
+              stop(offset='49%', :stop-color='colors.b')
+              stop(offset='51%', :stop-color='colors.a')
+          template(v-for="(row,q) in chess")
+            template(v-for="(c,r) in row")
+              g.hex(:transform='"translate("+43.3*(q*2+r)+","+75*r+")"', @click='click(c)', :class="{disabled:c.state}")
+                polygon(points='50,0 25,43.3 -25,43.3 -50,0 -25,-43.3 25,-43.3', :style="{fill:get_color(c.state)}", transform='rotate(-150)')
+                text(v-if='c.text') {{c.text}}
 
-      svg.board(:style='{"transform":"scale("+scale+","+scale+")"}')
-        defs
-          lineargradient#gradient1
-            stop(offset='49%', :stop-color='colors.a')
-            stop(offset='51%', :stop-color='colors.b')
-          lineargradient#gradient2
-            stop(offset='49%', :stop-color='colors.b')
-            stop(offset='51%', :stop-color='colors.a')
-          lineargradient#gradient3(x1="0",x2="0",y1="0",y2="1")
-            stop(offset='49%', :stop-color='colors.a')
-            stop(offset='51%', :stop-color='colors.b')
-          lineargradient#gradient4(x1="0",x2="0",y1="0",y2="1")
-            stop(offset='49%', :stop-color='colors.b')
-            stop(offset='51%', :stop-color='colors.a')
-        template(v-for="c in chess")
-          g(:transform='"translate("+43.3*(c.q*2+c.r)+","+75*c.r+")"', @click='click(c)', :class="{disabled:c.state}")
-            polygon(points='50,0 25,43.3 -25,43.3 -50,0 -25,-43.3 25,-43.3', :style="{fill:get_color(c.state)}", transform='rotate(-150)')
+      .toolbar
+        .title {{local?'Local Mode':'Online Mode'}}
+        .mi(@click='fullscreen') zoom_out_map
+        .mi(v-if='local', @click='init') change_history
+        .mi(v-if='!local', @dblclick='restart') change_history
+        .mi(v-if='!local && !connected', @click='connect') refresh
+        .mi(v-if='!local && connected && players_amount') {{players_amount==2?'people':'person'}}
+
       svg.current
-        g(transform='translate(43.3, 50)')
+        g.hex(transform='translate(43.3, 50)')
           polygon(points='50,0 25,43.3 -25,43.3 -50,0 -25,-43.3 25,-43.3', :style="{fill:get_color(current)}", transform='rotate(-150)')
+          text(v-if='!local && your == current') You
 
     script(src='/static/dist/vue.min.js')
     script(src='/static/scripts/utils.js')
     script(src='/static/scripts/app.js')
+    block mode

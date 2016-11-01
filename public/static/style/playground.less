@@ -15,26 +15,14 @@ html {
 body {
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   margin: 0;
   padding: 0;
   background-color: #444;
 }
 
-#app {
-  background-color: #888;
-  margin: 0 auto;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-  position: relative;
-  box-shadow: 1px 1px 20px 0 rgba(0, 0, 0, 0.5);
-  top: 50%;
-  transform: perspective(1px) translateY(-50%);
-  overflow: hidden;
-  //max-width: 550px;
-  //max-height: 1000px;
-}
+#app {height: 100%;}
 
 .scoreboard {
   max-width: 200px;

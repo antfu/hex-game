@@ -2,8 +2,8 @@
 
 ⬡ A real-time Hex game on web.
 
-![Local Mode](https://img.shields.io/badge/local-in%20progress-orange.svg)
-![Online Multiplayer](https://img.shields.io/badge/online-not%20yet-red.svg)
+![Local Mode](https://img.shields.io/badge/local-beta-yellow.svg)
+![Online Multiplayer](https://img.shields.io/badge/online-beta-yellow.svg)
 
 ## Rule
 
