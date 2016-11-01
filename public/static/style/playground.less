@@ -1,0 +1,103 @@
+@import './constants.less';
+
+html {
+  .font-normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: white;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  user-select: none;
+  background-color: #444;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background-color: #444;
+}
+
+#app {
+  background-color: #888;
+  margin: 0 auto;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  box-shadow: 1px 1px 20px 0 rgba(0, 0, 0, 0.5);
+  top: 50%;
+  transform: perspective(1px) translateY(-50%);
+  overflow: hidden;
+  //max-width: 550px;
+  //max-height: 1000px;
+}
+
+.scoreboard {
+  max-width: 200px;
+  margin: 20px auto;
+
+  .desc,
+  .name {
+    margin: 10px 0;
+  }
+
+  .name {
+    text-transform: capitalize;
+    text-align: left;
+    line-height: 20px;
+  }
+
+  .desc {
+    text-align: right;
+
+    .score {
+      .font-number;
+      font-size: 20px;
+    }
+
+    .text {
+      font-size: 12px;
+      opacity: .6;
+      margin-left: 6px;
+    }
+  }
+}
+
+.menu {
+  &.centered {
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+    top: 30%;
+    transform: perspective(1px) translateY(-50%);
+  }
+
+  h1 {
+    .font-number;
+    letter-spacing: 8px;
+  }
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 30px;
+  text-align: center;
+  font-size: 14px;
+
+  a {
+    color: rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+    transition: .3s ease-in-out;
+
+    &:hover {
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+}

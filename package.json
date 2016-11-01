@@ -1,0 +1,33 @@
+{
+  "name": "hex-game",
+  "version": "0.0.1",
+  "description": "A real-time Hex game",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "debug": "cross-env DEBUG=* supervisor -w controllers,game app.js",
+    "run": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antfu/hex-game.git"
+  },
+  "keywords": [
+    "hex",
+    "game",
+    "borad_game"
+  ],
+  "author": "Anthony Fu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/antfu/hex-game/issues"
+  },
+  "homepage": "https://github.com/antfu/hex-game#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-ws": "^2.0.0",
+    "less-middleware": "^2.2.0",
+    "pug": "^2.0.0-beta6"
+  }
+}
