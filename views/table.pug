@@ -5,7 +5,7 @@ html
     meta(name='viewport', content='width=device-width, initial-scale=0.7, user-scalable=yes')
     link(href='/static/style/index.css', rel='stylesheet')
     link(rel='icon', type='image/png', href='/static/favicon.png')
-  body
+  body(onmousemove="mouse_position(event)")
     #app
       .scaler(:style="{width:86.6*(width+height/2)*scale+'px', height:75*height*scale+'px'}", :class="{disabled:disabled}")
         svg.board(:style='{"transform":"scale("+scale+","+scale+")"}')
@@ -40,6 +40,12 @@ html
         g.hex(transform='translate(43.3, 50)')
           polygon(points='50,0 25,43.3 -25,43.3 -50,0 -25,-43.3 25,-43.3', :style="{fill:get_color(current)}", transform='rotate(-150)')
           text(v-if='!local && your == current') You
+
+      .cursor#cursor
+        svg
+          g.hex(transform='translate(43.3, 50)')
+            polygon(points='50,0 25,43.3 -25,43.3 -50,0 -25,-43.3 25,-43.3', :style="{fill:get_color(current)}", transform='rotate(-150)')
+            text(v-if='!local && your == current') You
 
     script(src='/static/dist/vue.min.js')
     script(src='/static/scripts/utils.js')

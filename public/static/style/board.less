@@ -36,8 +36,8 @@ g.hex {
     transform: translate(0,7px);
   }
 
-  &:hover,
-  &.disabled {
+  &.disabled,
+  &:hover {
     opacity: 1;
   }
 }
@@ -54,5 +54,22 @@ svg.current {
     stroke: #444;
     stroke-width: 3px;
     transition: .2s ease-in-out;
+  }
+}
+
+.cursor {
+  position: absolute;
+  top: -1000px;
+  left: -1000px;
+
+  svg {
+    transform-origin: left top;
+    transform: scale(0.3,0.3);
+    opacity: 1;
+
+    polygon {
+      stroke: #5e5e5e;
+      stroke-width: 2;
+    }
   }
 }

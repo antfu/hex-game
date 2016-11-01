@@ -91,6 +91,10 @@ mixins.local = {
   },
   created: function () {
     this.init()
+
+    document.addEventListener('DOMContentLoaded', function () {
+      cursor = document.getElementById('cursor')
+    }, false);
   },
 }
 
@@ -168,4 +172,13 @@ function makeapp(mode) {
     el: '#app',
     mixins: [mixins.common, mode == 'online' ? mixins.online : mixins.local],
   })
+}
+
+var cursor = undefined
+
+function mouse_position(e) {
+  if (cursor) {
+    cursor.style.top = e.pageY + 10 + 'px'
+    cursor.style.left = e.pageX + 10 + 'px'
+  }
 }
