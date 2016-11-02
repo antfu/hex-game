@@ -11,7 +11,7 @@ router.get('/online', function (req, res) {
 })
 
 router.get('/help', function (req, res) {
-  res.render('help')
+  res.redirect('https://en.wikipedia.org/wiki/Hex_(board_game)')
 })
 
 router.get('/local', function (req, res) {

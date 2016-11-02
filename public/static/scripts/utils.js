@@ -18,7 +18,7 @@
           else
             state = state === 0 ? 2 : (q === 0 ? 4 : 3)
         }
-        return { q: q, r: r, state: state, text: undefined }
+        return { state: state, text: undefined }
       })
     })
   }
