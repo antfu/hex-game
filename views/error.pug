@@ -1,16 +1,14 @@
-doctype html
-html
-  head
-    title Error - Hex Game
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    link(href='/static/style/index.css', rel='stylesheet')
-    link(rel='icon', type='image/png', href='/static/favicon.png')
-  body
-    .centered.menu
-      h1= error
-      a.button.block.borderless(href='/')
-        i.mi arrow_back
-        .text Back to lobby
+extends base.pug
 
-    .footer
-      a(href='https://antnf.com') @Anthony Fu
+block title
+  title Error - Hex Game
+
+block body
+  .centered.menu
+    h1= error
+    a.button.block.borderless(href='/')
+      i.mi arrow_back
+      .text Back to lobby
+
+  .footer
+    a(href='https://antnf.com') @Anthony Fu
