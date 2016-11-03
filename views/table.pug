@@ -38,13 +38,25 @@ block body
         polygon(points='50,0 25,43.3 -25,43.3 -50,0 -25,-43.3 25,-43.3', :style="{fill:get_color(current)}", transform='rotate(-150)')
         text(v-if='!local && your == current') You
 
+    .modal(v-if='is_gameover')
+      .centered
+        h1 {{is_gameover.title || 'Gameover!'}}
+        h3 {{is_gameover.title ? is_gameover.desc : is_gameover}}
+
+        .button(@click='gameover()') Close
+      .close(@click='gameover()')
+        .mi clear
+
     .cursor#cursor
       svg
         g.hex(transform='translate(43.3, 50)')
           polygon(points='50,0 25,43.3 -25,43.3 -50,0 -25,-43.3 25,-43.3', :style="{fill:get_color(current)}", transform='rotate(-150)')
           text(v-if='!local && your == current') You
 
-  script(src='/static/dist/vue.min.js')
+  - if (process.env.DEBUG)
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js')
+  - else
+    script(src='/static/dist/vue.min.js')
   script(src='/static/scripts/utils.js')
   script(src='/static/scripts/app.js')
   block mode

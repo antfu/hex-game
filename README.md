@@ -2,8 +2,8 @@
 
 ⬡ A real-time Hex game on web.
 
-![Local Mode](https://img.shields.io/badge/local-beta-yellow.svg)
-![Online Multiplayer](https://img.shields.io/badge/online-beta-yellow.svg)
+![Local Mode](https://img.shields.io/badge/local-finished-green.svg)
+![Online Multiplayer](https://img.shields.io/badge/online-finished-green.svg)
 
 ## Rule
 
@@ -21,9 +21,8 @@ npm run run
 ```
 
 ## Other Games
-Uno Game: https://github.com/antfu/uno-game
-
-Set Game: https://github.com/antfu/set-game
+- Uno Game: https://github.com/antfu/uno-game
+- Set Game: https://github.com/antfu/set-game
 
 ## License
 

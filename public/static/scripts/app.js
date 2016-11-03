@@ -36,10 +36,12 @@ mixins.common = {
     scale: 0.5,
     chess: [],
     current: 1,
+    counter: 0,
     colors: THEMES[user_theme] || THEMES.default,
     theme: user_theme,
     disabled: true,
-    prev: undefined
+    prev: undefined,
+    is_gameover: false
   },
   methods: {
     get_color: function (state) {
@@ -55,6 +57,7 @@ mixins.common = {
     },
     init: function () {
       this.chess = utils.create_ground(this.width)
+      this.counter = 0
     },
     fullscreen: function () {
       if (this.fullscreened)
@@ -63,8 +66,7 @@ mixins.common = {
         this.fullscreened = utils.fullscreen(document.body)
     },
     gameover: function (msg) {
-      this.disabled = true
-      alert(msg)
+      this.is_gameover = msg
     },
     change_theme: function () {
       var keys = Object.keys(THEMES)
@@ -93,12 +95,22 @@ mixins.local = {
         this.current = this.current == 1 ? 2 : 1
         this.check()
         this.prev = c
+        this.counter += 1
       }
     },
     check: function () {
       var result = utils.check(this.chess, this.width)
       if (result)
-        this.gameover('Gameover!\n' + (result === 1 ? 'Red' : 'Blue') + ' win!')
+        this.gameover({
+          title: 'Player ' + (result === 1 ? 'A' : 'B') + ' win!',
+          desc: this.counter + ' steps token.'
+        })
+    },
+    gameover: function (msg) {
+      // Override
+      this.is_gameover = msg
+      if (!msg)
+        this.init()
     },
     check_debug: function (q, r, c, state) {
       if (!this.chess[q] || !this.chess[q][r])
@@ -187,8 +199,13 @@ mixins.online = {
         }
         if (msg.players_amount)
           vm.players_amount = msg.players_amount
-        if (msg.gameover)
-          vm.gameover('Gameover!\nYou ' + (msg.gameover.win == vm.your ? 'win' : 'lose') + ' !')
+        if (msg.gameover) {
+          vm.disabled = true
+          vm.gameover({
+            title: 'You ' + (msg.gameover.win == vm.your ? 'WIN' : 'lose') + ' !',
+            desc: 'Gameover, double click the triangle at the bottom start a new game.'
+          })
+        }
       }
 
       window.onbeforeunload = function () {
