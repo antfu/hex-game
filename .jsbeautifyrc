@@ -11,7 +11,8 @@
   },
   "css": {
     "indent_char": " ",
-    "indent_size": 2
+    "indent_size": 2,
+    "align_assignments": false
   },
   "js": {
     "indent_size": 2,
@@ -22,5 +23,12 @@
     "max_preserve_newlines": 2,
     "jslint_happy": true,
     "brace_style": "collapse-preserve-inline"
+  },
+  "less": {
+    "indent_char": " ",
+    "indent_size": 2,
+    "preserve_newlines": true,
+    "beautify_on_save": true,
+    "newline_between_rules": true
   }
 }

@@ -21,12 +21,35 @@ var THEMES = {
     b: '#243611',
     text: '#e6d147',
     background: '#243610'
+  },
+  rena: {
+    blank: "#FFF0A5",
+    a: "#468966",
+    b: "#B64926",
+    text: "#FFB03B",
+    background: "#444",
+  },
+  brown: {
+    blank: "#FFEBBC",
+    a: "#7F755E",
+    b: "#BFB08D",
+    text: "#F2F2F2",
+    background: "#403B2F"
+  },
+  pheadra: {
+    blank: "#FFFF9D",
+    a: "#FF6138",
+    b: "#00A388",
+    text: "#F2F2F2",
+    background: "#79BD8F"
   }
 }
 
 var user_theme = localStorage.getItem('hex-game-theme') || 'default'
 
 var mixins = mixins || {}
+
+var pressTimer;
 
 mixins.common = {
   data: {
@@ -203,7 +226,7 @@ mixins.online = {
           vm.disabled = true
           vm.gameover({
             title: 'You ' + (msg.gameover.win == vm.your ? 'WIN' : 'lose') + ' !',
-            desc: 'Gameover, double click the triangle at the bottom start a new game.'
+            desc: 'Gameover, long press the triangle at the bottom start a new game.'
           })
         }
       }
@@ -216,7 +239,17 @@ mixins.online = {
       this.ws.send(JSON.stringify(data))
     },
     restart: function () {
+      clearTimeout(pressTimer);
       this.send({ restart: true })
+    },
+    restart_up: function () {
+      clearTimeout(pressTimer);
+    },
+    restart_down: function () {
+      var vm = this
+      pressTimer = setTimeout(function () {
+        vm.restart()
+      }, 700)
     }
   },
   created: function () {

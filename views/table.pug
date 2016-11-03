@@ -26,12 +26,12 @@ block body
 
     .toolbar
       .title {{local?'Local Mode':'Online Mode'}}
-      .mi(@click='fullscreen') zoom_out_map
-      .mi(@click='change_theme') color_lens
-      .mi(v-if='local', @click='init') change_history
-      .mi(v-if='!local', @dblclick='restart') change_history
-      .mi(v-if='!local && !connected', @click='connect') refresh
-      .mi(v-if='!local && connected && players_amount') {{players_amount==2?'people':'person'}}
+      .mi.tooltip(@click='fullscreen', data-tooltip="Fullscreen") zoom_out_map
+      .mi.tooltip(@click='change_theme', data-tooltip="Themes") color_lens
+      .mi.tooltip(v-if='local', @click='init', data-tooltip="Restart") change_history
+      .mi.tooltip(v-if='!local', @dblclick='restart', @mouseup="restart_up", @mousedown="restart_down", data-tooltip="Restart") change_history
+      .mi.tooltip(v-if='!local && !connected', @click='connect', data-tooltip="Reconnect") refresh
+      .mi.tooltip(v-if='!local && connected && players_amount', data-tooltip="Players") {{players_amount==2?'people':'person'}}
 
     svg.current
       g.hex(transform='translate(43.3, 50)')
