@@ -37,7 +37,7 @@ router.ws('/ws/r/:room', function (ws, req) {
 
 // 404
 router.get('*', function (req, res) {
-  res.render('error', { error: 'PAGE NOT FOUND' })
+  res.status(404).render('error', { error: 'PAGE NOT FOUND' })
 })
 
 module.exports = router

@@ -1,4 +1,5 @@
 console.info('Hi! The source code is available on github: https://github.com/antfu/hex-game.\nIf you have any questions, feel free to email me at anthonyfu117@hotmail.com.')
+
 var THEMES = {
   default: {
     blank: '#f4f4f1',
